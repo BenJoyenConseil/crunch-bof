@@ -1,0 +1,5 @@
+/twiki/pub/TWiki/TWikiLogos/twikiRobot46x50.gif	64
+/	47
+/twiki/bin/view/Main/WebHome	41
+/icons/mailman.jpg	37
+/icons/PythonPowered.png	37
