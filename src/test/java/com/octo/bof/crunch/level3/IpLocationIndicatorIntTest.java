@@ -28,7 +28,7 @@ public class IpLocationIndicatorIntTest {
     @Before
     public void setUp() throws Exception {
         FileUtils.deleteDirectory(new File(out));
-        indicator = new IpLocationIndicator(MemoryPipeline.getInstance(), in, out);
+        indicator = new IpLocationIndicator(MemoryPipeline.getInstance(), in, out, "src/test/resources/countries_ip");
     }
 
     @Test

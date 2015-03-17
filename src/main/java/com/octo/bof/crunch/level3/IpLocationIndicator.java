@@ -19,14 +19,16 @@ import static org.apache.crunch.lib.Sort.ColumnOrder.by;
  */
 
 public class IpLocationIndicator {
+    private String countriesFile;
     private String in;
     private String out;
     private Pipeline pipeline;
 
-    public IpLocationIndicator(Pipeline pipeline, String in, String out){
+    public IpLocationIndicator(Pipeline pipeline, String in, String out, String countriesFile){
         this.pipeline = pipeline;
         this.in = in;
         this.out = out;
+        this.countriesFile = countriesFile;
     }
 
     public PCollection<String> read(){
@@ -46,7 +48,7 @@ public class IpLocationIndicator {
     }
 
     private PTable<String, String> getCountryByIp() {
-        PCollection<String> records = pipeline.readTextFile("src/test/resources/countries_ip");
+        PCollection<String> records = pipeline.readTextFile(countriesFile);
         return records.parallelDo(new ExtractCountriesIpDoFn(), Writables.tableOf(Writables.strings(), Writables.strings()));
     }
 
