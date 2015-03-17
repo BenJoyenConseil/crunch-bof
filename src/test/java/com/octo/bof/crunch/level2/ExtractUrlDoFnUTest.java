@@ -1,4 +1,4 @@
-package com.octo.bof.crunch.level1;
+package com.octo.bof.crunch.level2;
 
 
 import org.apache.crunch.impl.mem.emit.InMemoryEmitter;

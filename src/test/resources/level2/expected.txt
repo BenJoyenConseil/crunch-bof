@@ -1,6 +1,5 @@
-200	1274
-302	6
-304	137
-401	123
-404	5
-408	1
+/	47
+/twiki/bin/view/Main/WebHome	41
+/razor.html	26
+/twiki/bin/view/Main/SpamAssassinTaggingOnly	18
+/twiki/bin/view/Main/SpamAssassinAndPostFix	17

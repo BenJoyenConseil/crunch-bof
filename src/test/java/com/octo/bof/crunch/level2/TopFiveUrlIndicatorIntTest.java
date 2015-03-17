@@ -1,6 +1,5 @@
-package com.octo.bof.crunch.level1;
+package com.octo.bof.crunch.level2;
 
-import com.octo.bof.crunch.level0.ReadWriteData;
 import org.apache.commons.io.FileUtils;
 import org.apache.crunch.impl.mem.MemoryPipeline;
 import org.junit.Before;
@@ -19,7 +18,7 @@ public class TopFiveUrlIndicatorIntTest {
     String in = "src/test/resources/access_log";
     String out = "target/test/result";
     private Path outputFile = Paths.get(out + "/out.txt");
-    private Path expectedFile = Paths.get("src/test/resources/level1/expected.txt");;
+    private Path expectedFile = Paths.get("src/test/resources/level2/expected.txt");;
     private TopFiveUrlIndicator indicator;
 
     @Before

@@ -1,7 +1,6 @@
-package com.octo.bof.crunch.level2;
+package com.octo.bof.crunch.level3;
 
-
-import com.octo.bof.crunch.level1.TopFiveUrlIndicator;
+import com.octo.bof.crunch.level2.TopFiveUrlIndicator;
 import org.apache.commons.io.FileUtils;
 import org.apache.crunch.impl.mem.MemoryPipeline;
 import org.junit.Before;
@@ -15,19 +14,21 @@ import java.nio.file.Paths;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class HttpCodeIndicatorIntTest {
+/**
+ * Powered by o<+o
+ */
 
-
+public class IpLocationIndicatorIntTest {
     String in = "src/test/resources/access_log";
     String out = "target/test/result";
     private Path outputFile = Paths.get(out + "/out.txt");
-    private Path expectedFile = Paths.get("src/test/resources/level2/expected.txt");;
-    private HttpCodeIndicator indicator;
+    private Path expectedFile = Paths.get("src/test/resources/level3/expected.txt");;
+    private IpLocationIndicator indicator;
 
     @Before
     public void setUp() throws Exception {
         FileUtils.deleteDirectory(new File(out));
-        indicator = new HttpCodeIndicator(MemoryPipeline.getInstance(), in, out);
+        indicator = new IpLocationIndicator(MemoryPipeline.getInstance(), in, out);
     }
 
     @Test

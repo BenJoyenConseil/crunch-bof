@@ -1,15 +1,11 @@
-package com.octo.bof.crunch.level2;
+package com.octo.bof.crunch.level1;
 
 
 import org.apache.crunch.*;
-import org.apache.crunch.fn.Aggregators;
 import org.apache.crunch.io.From;
 import org.apache.crunch.io.To;
 import org.apache.crunch.types.writable.Writables;
 import org.apache.hadoop.fs.Path;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class HttpCodeIndicator {
 

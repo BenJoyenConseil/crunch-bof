@@ -1,10 +1,8 @@
-package com.octo.bof.crunch.level1;
+package com.octo.bof.crunch.level2;
 
 
 import org.apache.crunch.DoFn;
 import org.apache.crunch.Emitter;
-import org.apache.crunch.Pair;
-import org.apache.crunch.impl.mem.emit.InMemoryEmitter;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

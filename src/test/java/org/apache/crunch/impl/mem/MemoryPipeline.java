@@ -202,7 +202,10 @@ public class MemoryPipeline implements Pipeline {
                             byte[] tab = "\t".getBytes(Charsets.UTF_8);
                             for (Object o : collection.materialize()) {
                                 Pair p = (Pair) o;
-                                os.write(p.first().toString().getBytes(Charsets.UTF_8));
+                                Object first = p.first();
+                                if(first == null)
+                                    first = "NULL";
+                                os.write(first.toString().getBytes(Charsets.UTF_8));
                                 os.write(tab);
                                 os.write(p.second().toString().getBytes(Charsets.UTF_8));
                                 os.write(newLine);

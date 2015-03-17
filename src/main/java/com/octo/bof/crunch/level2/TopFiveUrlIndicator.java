@@ -1,20 +1,16 @@
-package com.octo.bof.crunch.level1;
+package com.octo.bof.crunch.level2;
 
-import org.apache.crunch.*;
-import org.apache.crunch.fn.Aggregators;
+import org.apache.crunch.PCollection;
+import org.apache.crunch.PTable;
+import org.apache.crunch.Pipeline;
+import org.apache.crunch.Target;
 import org.apache.crunch.io.From;
 import org.apache.crunch.io.To;
 import org.apache.crunch.types.writable.Writables;
 import org.apache.hadoop.fs.Path;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 /**
- * Created with IntelliJ IDEA.
- * User: 0<+0
- * Date: 16/03/15
- * Time: 13:33
+ * Powered by o<+o
  */
 
 public class TopFiveUrlIndicator {
@@ -36,7 +32,8 @@ public class TopFiveUrlIndicator {
         PCollection<String> records = read();
 
         PCollection<String> urls = records.parallelDo(new ExtractUrlDoFn(), Writables.strings());
-        PTable<String, Long> result = urls.count().top(5);
+        PCollection<String> urlsFiltered = urls.filter(new ExcludeFileFilter());
+        PTable<String, Long> result = urlsFiltered.count().top(5);
 
         write(result);
     }
