@@ -2,7 +2,7 @@ package com.octo.bof.crunch.level0;
 
 
 import org.apache.commons.io.FileUtils;
-import org.apache.crunch.impl.mem.CustomMemPipeline;
+import org.apache.crunch.impl.mem.OctoMemPipeline;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -28,7 +28,7 @@ public class ReadWriteIntTest {
         ReadWriteData job = new ReadWriteData();
 
         // When
-        job.run(CustomMemPipeline.getInstance(), in, out);
+        job.run(OctoMemPipeline.getInstance(), in, out);
 
         // Then
         assertThat(out + "/out.txt").isEqualTo("src/test/resources/level0/expected.txt");

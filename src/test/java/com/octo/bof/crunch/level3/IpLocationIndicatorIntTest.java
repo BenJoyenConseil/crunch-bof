@@ -1,7 +1,7 @@
 package com.octo.bof.crunch.level3;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.crunch.impl.mem.CustomMemPipeline;
+import org.apache.crunch.impl.mem.OctoMemPipeline;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -31,7 +31,7 @@ public class IpLocationIndicatorIntTest {
         IpLocationIndicator job = new IpLocationIndicator();
 
         // When
-        job.run(CustomMemPipeline.getInstance(), in, out, countriesFile);
+        job.run(OctoMemPipeline.getInstance(), in, out, countriesFile);
 
         // Then
         assertThat(out + "/out.txt").isEqualTo("src/test/resources/level3/expected.txt");

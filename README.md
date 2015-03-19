@@ -14,4 +14,4 @@ level2 : get top five requested urls (udf and filter)
 level3 : get country list by ip address location (join)
 
 
-org.apache.crunch.impl.mem.CustomMemPipeline is a trick to have output with constant name.
+org.apache.crunch.impl.mem.OctoMemPipeline is a trick to have output with constant name.

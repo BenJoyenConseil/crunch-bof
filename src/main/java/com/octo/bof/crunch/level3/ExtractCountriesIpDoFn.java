@@ -13,6 +13,8 @@ public class ExtractCountriesIpDoFn extends DoFn<String, Pair<String, String>> {
     @Override
     public void process(String input, Emitter<Pair<String, String>> emitter) {
         String[] split = input.split("\t");
-        emitter.emit(Pair.of(split[0], split[1]));
+        String ip = split[0];
+        String countryCode = split[1];
+        emitter.emit(Pair.of(ip, countryCode));
     }
 }

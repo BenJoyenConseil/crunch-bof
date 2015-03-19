@@ -66,11 +66,11 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.google.common.util.concurrent.AbstractFuture;
 
-public class CustomMemPipeline implements Pipeline {
+public class OctoMemPipeline implements Pipeline {
 
     private static final Log LOG = LogFactory.getLog(MemPipeline.class);
     private static Counters COUNTERS = new CountersWrapper();
-    private static final CustomMemPipeline INSTANCE = new CustomMemPipeline();
+    private static final OctoMemPipeline INSTANCE = new OctoMemPipeline();
 
     private int outputIndex = 0;
 
@@ -131,7 +131,7 @@ public class CustomMemPipeline implements Pipeline {
     private Configuration conf = new Configuration();
     private Set<Target> activeTargets = Sets.newHashSet();
 
-    private CustomMemPipeline() {
+    private OctoMemPipeline() {
     }
 
     @Override

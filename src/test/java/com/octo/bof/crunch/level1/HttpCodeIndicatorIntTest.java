@@ -1,10 +1,8 @@
 package com.octo.bof.crunch.level1;
 
 
-import com.octo.bof.crunch.level0.ReadWriteData;
 import org.apache.commons.io.FileUtils;
-import org.apache.crunch.impl.mem.CustomMemPipeline;
-import org.assertj.core.api.CrunchAssertions;
+import org.apache.crunch.impl.mem.OctoMemPipeline;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -29,7 +27,7 @@ public class HttpCodeIndicatorIntTest {
         HttpCodeIndicator job = new HttpCodeIndicator();
 
         // When
-        job.run(CustomMemPipeline.getInstance(), in, out);
+        job.run(OctoMemPipeline.getInstance(), in, out);
 
         // Then
         assertThat(out + "/out.txt").isEqualTo("src/test/resources/level1/expected.txt");
