@@ -31,11 +31,11 @@ public class TopFiveUrlIndicator {
     public void processIndicator() {
         PCollection<String> records = read();
 
-        PCollection<String> urls = records.parallelDo(new ExtractUrlDoFn(), Writables.strings());
-        PCollection<String> urlsFiltered = urls.filter(new ExcludeFileFilter());
-        PTable<String, Long> result = urlsFiltered.count().top(5);
+        // extract urls from logs
+        // exclude files
+        // count ulrs & top
 
-        write(result);
+        //write(result);
     }
 
     private void write(PCollection result) {

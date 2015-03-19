@@ -8,16 +8,8 @@ import org.apache.crunch.FilterFn;
 public class ExcludeFileFilter extends FilterFn<String> {
     @Override
     public boolean accept(String input) {
-        if(input.endsWith(".jpg"))
-            return false;
-        if(input.endsWith(".gif"))
-            return false;
-        if(input.endsWith(".ico"))
-            return false;
-        if(input.endsWith(".txt"))
-            return false;
-        if(input.endsWith(".png"))
-            return false;
-        return true;
+        // exclude jpg gif ico txt png extensiosn
+
+        return false;
     }
 }

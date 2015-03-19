@@ -1,15 +1,11 @@
-package com.octo.bof.crunch.level0;
+package com.octo.bof.crunch.solution;
 
 
-import org.apache.crunch.*;
-import org.apache.crunch.fn.Aggregators;
+import org.apache.crunch.PCollection;
+import org.apache.crunch.Pipeline;
 import org.apache.crunch.io.From;
 import org.apache.crunch.io.To;
-import org.apache.crunch.types.writable.Writables;
 import org.apache.hadoop.fs.Path;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class ReadWriteData {
     private String in;
@@ -23,6 +19,9 @@ public class ReadWriteData {
     }
 
     public void processIndicator() {
+        PCollection<String> records = pipeline.read(From.textFile(new Path(in)));
 
+        pipeline.write(records, To.textFile(out));
+        pipeline.done();
     }
 }
