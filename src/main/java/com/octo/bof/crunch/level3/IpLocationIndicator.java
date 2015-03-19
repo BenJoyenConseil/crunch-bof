@@ -13,42 +13,23 @@ import org.apache.hadoop.fs.Path;
  */
 
 public class IpLocationIndicator {
-    private String countriesFile;
-    private String in;
-    private String out;
-    private Pipeline pipeline;
+    public void run(Pipeline pipeline, String in, String out, String countriesFile) {
 
-    public IpLocationIndicator(Pipeline pipeline, String in, String out, String countriesFile){
-        this.pipeline = pipeline;
-        this.in = in;
-        this.out = out;
-        this.countriesFile = countriesFile;
-    }
+        PTable<String, String> countryByIp = pipeline.readTextFile(countriesFile)
+                .parallelDo(
+                        new ExtractCountriesIpDoFn(),
+                        Writables.tableOf(Writables.strings(), Writables.strings())
+                );
 
-    public PCollection<String> read(){
-        return pipeline.read(From.textFile(new Path(in)));
-    }
+        PCollection<String> ipAddresses = pipeline.read(From.textFile(new Path(in))).parallelDo(new ExtractIpDoFn(), Writables.strings());
 
-    public void processIndicator() {
-        PTable<String, String> countryByIp = getCountryByIp();
-        PCollection<String> records = read();
-
-        PCollection<String> ip = records.parallelDo(new ExtractIpDoFn(), Writables.strings());
-        PTable<String, Long> countIp = ip.count();
+        PTable<String, Long> countIp = ipAddresses.count();
         PTable<String, Pair<String, Long>> join = countryByIp.join(countIp);
         PTable<String, Long> countCountry = PTables.asPTable(join.values());
         PTable<String, Long> result = countCountry.groupByKey().combineValues(Aggregators.SUM_LONGS());
 
-        write(result);
-    }
-
-    private PTable<String, String> getCountryByIp() {
-        PCollection<String> records = pipeline.readTextFile(countriesFile);
-        return records.parallelDo(new ExtractCountriesIpDoFn(), Writables.tableOf(Writables.strings(), Writables.strings()));
-    }
-
-    private void write(PCollection result) {
         pipeline.write(result, To.textFile(out), Target.WriteMode.APPEND);
         pipeline.done();
+
     }
 }

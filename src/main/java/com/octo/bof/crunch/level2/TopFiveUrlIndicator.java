@@ -14,32 +14,15 @@ import org.apache.hadoop.fs.Path;
  */
 
 public class TopFiveUrlIndicator {
-    private String in;
-    private String out;
-    private Pipeline pipeline;
 
-    public TopFiveUrlIndicator(Pipeline pipeline, String in, String out){
-        this.pipeline = pipeline;
-        this.in = in;
-        this.out = out;
-    }
+    public void run(Pipeline pipeline, String in, String out) {
 
-    public PCollection<String> read(){
-        return pipeline.read(From.textFile(new Path(in)));
-    }
-
-    public void processIndicator() {
-        PCollection<String> records = read();
-
+        PCollection<String> records = pipeline.read(From.textFile(new Path(in)));
         PCollection<String> urls = records.parallelDo(new ExtractUrlDoFn(), Writables.strings());
         PCollection<String> urlsFiltered = urls.filter(new ExcludeFileFilter());
         PTable<String, Long> result = urlsFiltered.count().top(5);
-
-        write(result);
-    }
-
-    private void write(PCollection result) {
         pipeline.write(result, To.textFile(out), Target.WriteMode.APPEND);
         pipeline.done();
+
     }
 }
