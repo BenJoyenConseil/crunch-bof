@@ -2,7 +2,7 @@ package com.octo.bof.crunch.level3;
 
 import com.octo.bof.crunch.level2.TopFiveUrlIndicator;
 import org.apache.commons.io.FileUtils;
-import org.apache.crunch.impl.mem.MemoryPipeline;
+import org.apache.crunch.impl.mem.MemPipeline;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -28,7 +28,7 @@ public class IpLocationIndicatorIntTest {
     @Before
     public void setUp() throws Exception {
         FileUtils.deleteDirectory(new File(out));
-        indicator = new IpLocationIndicator(MemoryPipeline.getInstance(), in, out, "src/test/resources/countries_ip");
+        indicator = new IpLocationIndicator(MemPipeline.getInstance(), in, out, "src/test/resources/countries_ip");
     }
 
     @Test

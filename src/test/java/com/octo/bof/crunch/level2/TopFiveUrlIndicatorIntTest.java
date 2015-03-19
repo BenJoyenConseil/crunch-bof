@@ -1,7 +1,7 @@
 package com.octo.bof.crunch.level2;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.crunch.impl.mem.MemoryPipeline;
+import org.apache.crunch.impl.mem.MemPipeline;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,7 +24,7 @@ public class TopFiveUrlIndicatorIntTest {
     @Before
     public void setUp() throws Exception {
         FileUtils.deleteDirectory(new File(out));
-        indicator = new TopFiveUrlIndicator(MemoryPipeline.getInstance(), in, out);
+        indicator = new TopFiveUrlIndicator(MemPipeline.getInstance(), in, out);
     }
 
     @Test

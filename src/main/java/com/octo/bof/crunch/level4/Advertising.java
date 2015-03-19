@@ -3,6 +3,7 @@ package com.octo.bof.crunch.level4;
 import org.apache.crunch.*;
 import org.apache.crunch.io.From;
 import org.apache.crunch.io.To;
+import org.apache.crunch.types.avro.Avros;
 
 /**
  * Powered by o<+o
@@ -22,10 +23,10 @@ public class Advertising {
     public void processJob() {
         PCollection<String> usersRawData = pipeline.read(From.textFile(in));
 
+        PCollection<User> result = usersRawData.parallelDo(new ExtractUserDoFn(), Avros.reflects(User.class));
 
 
-
-        pipeline.write(usersRawData, To.avroFile(out));
+        pipeline.write(result, To.avroFile(out));
     }
 
     private void write(PCollection result) {
