@@ -11,8 +11,10 @@ public class ExtractHttpCodeDoFn extends DoFn<String, Integer> {
 
     @Override
     public void process(String input, Emitter<Integer> emitter) {
-        // regex to match HttpStatusCode "\"\\s(\\d{3})"
-
-        // emit code
+        Matcher matcher = Pattern.compile("\"\\s(\\d{3})").matcher(input);
+        matcher.find();
+        String group = matcher.group(1);
+        Integer httpCode = Integer.valueOf(group);
+        emitter.emit(httpCode);
     }
 }

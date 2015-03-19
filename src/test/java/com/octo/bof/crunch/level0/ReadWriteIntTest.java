@@ -2,6 +2,7 @@ package com.octo.bof.crunch.level0;
 
 
 import org.apache.commons.io.FileUtils;
+import org.apache.crunch.impl.mem.CustomMemPipeline;
 import org.apache.crunch.impl.mem.MemPipeline;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,7 +26,7 @@ public class ReadWriteIntTest {
     @Before
     public void setUp() throws Exception {
         FileUtils.deleteDirectory(new File(out));
-        indicator = new ReadWriteData(MemPipeline.getInstance(), in, out);
+        indicator = new ReadWriteData(CustomMemPipeline.getInstance(), in, out);
     }
 
     @Test

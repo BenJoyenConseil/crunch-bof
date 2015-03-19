@@ -1,18 +1,12 @@
 package com.octo.bof.crunch.level3;
 
-import com.octo.bof.crunch.level2.ExcludeFileFilter;
-import com.octo.bof.crunch.level2.ExtractUrlDoFn;
 import org.apache.crunch.*;
 import org.apache.crunch.fn.Aggregators;
 import org.apache.crunch.io.From;
 import org.apache.crunch.io.To;
 import org.apache.crunch.lib.PTables;
-import org.apache.crunch.lib.Sort;
-import org.apache.crunch.lib.join.*;
 import org.apache.crunch.types.writable.Writables;
 import org.apache.hadoop.fs.Path;
-
-import static org.apache.crunch.lib.Sort.ColumnOrder.by;
 
 /**
  * Powered by o<+o

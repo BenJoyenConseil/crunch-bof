@@ -11,6 +11,7 @@ public class ExtractIpDoFn extends DoFn<String, String> {
 
     @Override
     public void process(String input, Emitter<String> emitter) {
-        // extract ip address
+        String ip = input.split(" ")[0];
+        emitter.emit(ip);
     }
 }

@@ -2,6 +2,7 @@ package com.octo.bof.crunch.level1;
 
 
 import org.apache.commons.io.FileUtils;
+import org.apache.crunch.impl.mem.CustomMemPipeline;
 import org.apache.crunch.impl.mem.MemPipeline;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +27,7 @@ public class HttpCodeIndicatorIntTest {
     @Before
     public void setUp() throws Exception {
         FileUtils.deleteDirectory(new File(out));
-        indicator = new HttpCodeIndicator(MemPipeline.getInstance(), in, out);
+        indicator = new HttpCodeIndicator(CustomMemPipeline.getInstance(), in, out);
     }
 
     @Test
