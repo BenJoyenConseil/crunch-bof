@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <crunch.version>0.11.0</crunch.version>
+        <crunch.version>0.11.0-hadoop2</crunch.version>
     </properties>
 
     <dependencies>
