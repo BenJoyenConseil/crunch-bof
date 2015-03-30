@@ -1,5 +1,8 @@
 # crunch-bof
 
+The goal : learn Apache Crunch programming. 
+How ? You have to implement the code to pass the tests.
+
 mvn clean install -DSkipTests
 
 src/test/resources/access_log is the main dataset :
