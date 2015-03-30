@@ -1,7 +1,9 @@
 # crunch-bof
 
-The goal : learn Apache Crunch programming. 
+The goal : to learn Apache Crunch programming. 
+
 How ? You have to implement the code to pass the tests.
+
 
 mvn clean install -DSkipTests
 
