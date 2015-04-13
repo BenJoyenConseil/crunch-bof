@@ -18,5 +18,7 @@ level2 : get top five requested urls (udf and filter)
 
 level3 : get country list by ip address location (join)
 
+level4 : process inverted index on the Declaration des Droits de l'Homme et du Citoyen
+
 
 org.apache.crunch.impl.mem.OctoMemPipeline is a trick to have output with constant name.
