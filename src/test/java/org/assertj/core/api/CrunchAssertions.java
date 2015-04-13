@@ -6,13 +6,15 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import static org.assertj.core.api.CrunchAssertions.FileUtil.getFileContent;
+
 /**
  * Powered by o<+o
  */
 
 public class CrunchAssertions {
     public static FileAssert assertThat(String actual) throws IOException {
-        String read = new String(Files.readAllBytes(Paths.get(actual)));
+        String read = getFileContent(actual);
         return new FileAssert(read);
     }
 
@@ -26,12 +28,18 @@ public class CrunchAssertions {
         public StringAssert isEqualTo(Object expected) {
             String expect = null;
             try {
-                expect = new String(Files.readAllBytes(Paths.get((String) expected)));
+                expect = getFileContent((String) expected);
             } catch (IOException e) {
                 e.printStackTrace();
             }
             Objects.instance().assertEqual(info, actual, expect);
             return myself;
+        }
+    }
+
+    public static class FileUtil{
+        public static String getFileContent(String filePath) throws IOException {
+            return new String(Files.readAllBytes(Paths.get(filePath)));
         }
     }
 }

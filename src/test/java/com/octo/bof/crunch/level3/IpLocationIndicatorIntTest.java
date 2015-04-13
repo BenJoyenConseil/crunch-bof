@@ -26,7 +26,7 @@ public class IpLocationIndicatorIntTest {
     }
 
     @Test
-    public void processIndicator_nominalCase() throws IOException {
+    public void run_nominalCase() throws IOException {
         // Given
         IpLocationIndicator job = new IpLocationIndicator();
 

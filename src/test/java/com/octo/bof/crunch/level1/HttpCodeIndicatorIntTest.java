@@ -22,7 +22,7 @@ public class HttpCodeIndicatorIntTest {
     }
 
     @Test
-    public void processIndicator_nominalCase() throws IOException {
+    public void run_nominalCase() throws IOException {
         // Given
         HttpCodeIndicator job = new HttpCodeIndicator();
 

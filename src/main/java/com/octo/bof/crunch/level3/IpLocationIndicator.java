@@ -21,7 +21,8 @@ public class IpLocationIndicator {
                         Writables.tableOf(Writables.strings(), Writables.strings())
                 );
 
-        PCollection<String> ipAddresses = pipeline.read(From.textFile(new Path(in))).parallelDo(new ExtractIpDoFn(), Writables.strings());
+        PCollection<String> ipAddresses = pipeline.read(From.textFile(new Path(in)))
+                .parallelDo(new ExtractIpDoFn(), Writables.strings());
 
         PTable<String, Long> countIp = ipAddresses.count();
         PTable<String, Pair<String, Long>> join = countryByIp.join(countIp);

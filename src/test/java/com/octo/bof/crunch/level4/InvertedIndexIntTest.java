@@ -1,5 +1,6 @@
-package com.octo.bof.crunch.level2;
+package com.octo.bof.crunch.level4;
 
+import com.octo.bof.crunch.level3.IpLocationIndicator;
 import org.apache.commons.io.FileUtils;
 import org.apache.crunch.impl.mem.OctoMemPipeline;
 import org.junit.Before;
@@ -10,9 +11,12 @@ import java.io.IOException;
 
 import static org.assertj.core.api.CrunchAssertions.assertThat;
 
-public class TopFiveUrlIndicatorIntTest {
+/**
+ * Powered by o<+o
+ */
 
-    String in = "src/test/resources/access_log";
+public class InvertedIndexIntTest {
+    String in = "src/test/resources/level4/ddhc-1789.txt";
     String out = "target/test/result";
 
     @Before
@@ -23,12 +27,12 @@ public class TopFiveUrlIndicatorIntTest {
     @Test
     public void run_nominalCase() throws IOException {
         // Given
-        TopFiveUrlIndicator job = new TopFiveUrlIndicator();
+        InvertedIndex job = new InvertedIndex();
 
         // When
         job.run(OctoMemPipeline.getInstance(), in, out);
 
         // Then
-        assertThat(out + "/out.txt").isEqualTo("src/test/resources/level2/expected.txt");
+        assertThat(out + "/out.txt").isEqualTo("src/test/resources/level4/expected.txt");
     }
 }
