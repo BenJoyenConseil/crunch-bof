@@ -7,6 +7,10 @@ import org.apache.crunch.io.From;
 import org.apache.crunch.io.To;
 import org.apache.hadoop.fs.Path;
 
+/**
+ * Powered by o<+o (bjc).
+ */
+
 public class ReadWriteData {
 
     public void run(Pipeline pipeline, String in, String out) {

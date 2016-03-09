@@ -15,11 +15,13 @@ public class WordRelatedArticlesDoFn extends DoFn<Pair<String, Iterable<String>>
     @Override
     public void process(Pair<String, Iterable<String>> input, Emitter<Pair<String, String>> emitter) {
         String word = input.first();
-        String articles = "";
+        StringBuilder articles = new StringBuilder();
         Iterator<String> iterator = input.second().iterator();
 
         while (iterator.hasNext())
-            articles = articles + iterator.next() + ",";
-        emitter.emit(Pair.of(word, articles));
+            articles.append(iterator.next())
+                    .append(",");
+
+        emitter.emit(Pair.of(word, articles.toString()));
     }
 }

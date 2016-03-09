@@ -10,11 +10,13 @@ import org.apache.crunch.Pair;
 
 public class ExtractCountriesIpDoFn extends DoFn<String, Pair<String, String>> {
 
+    public static final String TAB = "\t";
+
     @Override
     public void process(String input, Emitter<Pair<String, String>> emitter) {
-        String[] split = input.split("\t");
-        String ip = split[0];
-        String countryCode = split[1];
+        String[] splits = input.split(TAB);
+        String ip = splits[0];
+        String countryCode = splits[1];
         emitter.emit(Pair.of(ip, countryCode));
     }
 }

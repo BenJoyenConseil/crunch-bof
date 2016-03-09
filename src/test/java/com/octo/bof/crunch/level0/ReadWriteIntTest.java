@@ -1,8 +1,9 @@
 package com.octo.bof.crunch.level0;
 
 
+import com.octo.bof.crunch.BaseCrunchBofTest;
 import org.apache.commons.io.FileUtils;
-import org.apache.crunch.impl.mem.OctoMemPipeline;
+import org.apache.crunch.impl.mem.MemPipeline;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,15 +12,11 @@ import java.io.IOException;
 
 import static org.assertj.core.api.CrunchAssertions.assertThat;
 
-public class ReadWriteIntTest {
+public class ReadWriteIntTest extends BaseCrunchBofTest {
 
-
-    String in = "src/test/resources/access_log";
-    String out = "target/test/result";
-
-    @Before
-    public void setUp() throws Exception {
-        FileUtils.deleteDirectory(new File(out));
+    public ReadWriteIntTest () {
+        in = "src/test/resources/access_log";
+        out = "target/test/result";
     }
 
     @Test
@@ -28,9 +25,9 @@ public class ReadWriteIntTest {
         ReadWriteData job = new ReadWriteData();
 
         // When
-        job.run(OctoMemPipeline.getInstance(), in, out);
+        job.run(MemPipeline.getInstance(), in, out);
 
         // Then
-        assertThat(out + "/out.txt").isEqualTo("src/test/resources/level0/expected.txt");
+        assertThat(out + "/out1.txt").isEqualTo("src/test/resources/level0/expected.txt");
     }
 }

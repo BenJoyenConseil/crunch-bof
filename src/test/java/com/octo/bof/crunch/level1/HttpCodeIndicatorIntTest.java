@@ -1,8 +1,9 @@
 package com.octo.bof.crunch.level1;
 
 
+import com.octo.bof.crunch.BaseCrunchBofTest;
 import org.apache.commons.io.FileUtils;
-import org.apache.crunch.impl.mem.OctoMemPipeline;
+import org.apache.crunch.impl.mem.MemPipeline;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,14 +12,12 @@ import java.io.IOException;
 
 import static org.assertj.core.api.CrunchAssertions.assertThat;
 
-public class HttpCodeIndicatorIntTest {
+public class HttpCodeIndicatorIntTest extends BaseCrunchBofTest {
 
-    String in = "src/test/resources/access_log";
-    String out = "target/test/result";
 
-    @Before
-    public void setUp() throws Exception {
-        FileUtils.deleteDirectory(new File(out));
+    public HttpCodeIndicatorIntTest() {
+        in = "src/test/resources/access_log";
+        out = "target/test/result";
     }
 
     @Test
@@ -27,9 +26,9 @@ public class HttpCodeIndicatorIntTest {
         HttpCodeIndicator job = new HttpCodeIndicator();
 
         // When
-        job.run(OctoMemPipeline.getInstance(), in, out);
+        job.run(MemPipeline.getInstance(), in, out);
 
         // Then
-        assertThat(out + "/out.txt").isEqualTo("src/test/resources/level1/expected.txt");
+        assertThat(out).isEqualTo("src/test/resources/level1/expected.txt");
     }
 }

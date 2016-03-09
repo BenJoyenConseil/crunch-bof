@@ -2,9 +2,14 @@ package org.assertj.core.api;
 
 import org.assertj.core.internal.Objects;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.CrunchAssertions.FileUtil.getFileContent;
 
@@ -39,7 +44,19 @@ public class CrunchAssertions {
 
     public static class FileUtil{
         public static String getFileContent(String filePath) throws IOException {
-            return new String(Files.readAllBytes(Paths.get(filePath)));
+            final Path[] txtFileArray = {null};
+            Files.walk(Paths.get(filePath)).forEach(path-> {
+                if (Files.isRegularFile(path)) {
+                    if(path.getFileName().toString().endsWith(".txt")) {
+                        txtFileArray[0] = path;
+                    }
+                }
+            });
+
+            if(txtFileArray.length == 0)
+                throw new FileNotFoundException("There is no txtFileArray ending with \".txt\" extension in the path : " + filePath);
+
+            return new String(Files.readAllBytes(txtFileArray[0]));
         }
     }
 }

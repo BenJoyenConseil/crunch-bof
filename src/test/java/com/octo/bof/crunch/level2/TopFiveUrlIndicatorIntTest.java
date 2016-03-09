@@ -1,7 +1,8 @@
 package com.octo.bof.crunch.level2;
 
+import com.octo.bof.crunch.BaseCrunchBofTest;
 import org.apache.commons.io.FileUtils;
-import org.apache.crunch.impl.mem.OctoMemPipeline;
+import org.apache.crunch.impl.mem.MemPipeline;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,14 +11,11 @@ import java.io.IOException;
 
 import static org.assertj.core.api.CrunchAssertions.assertThat;
 
-public class TopFiveUrlIndicatorIntTest {
+public class TopFiveUrlIndicatorIntTest extends BaseCrunchBofTest {
 
-    String in = "src/test/resources/access_log";
-    String out = "target/test/result";
-
-    @Before
-    public void setUp() throws Exception {
-        FileUtils.deleteDirectory(new File(out));
+    public TopFiveUrlIndicatorIntTest () {
+        in = "src/test/resources/access_log";
+        out = "target/test/result";
     }
 
     @Test
@@ -26,9 +24,9 @@ public class TopFiveUrlIndicatorIntTest {
         TopFiveUrlIndicator job = new TopFiveUrlIndicator();
 
         // When
-        job.run(OctoMemPipeline.getInstance(), in, out);
+        job.run(MemPipeline.getInstance(), in, out);
 
         // Then
-        assertThat(out + "/out.txt").isEqualTo("src/test/resources/level2/expected.txt");
+        assertThat(out).isEqualTo("src/test/resources/level2/expected.txt");
     }
 }

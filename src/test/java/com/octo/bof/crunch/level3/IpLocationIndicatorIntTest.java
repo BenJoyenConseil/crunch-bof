@@ -1,7 +1,8 @@
 package com.octo.bof.crunch.level3;
 
+import com.octo.bof.crunch.BaseCrunchBofTest;
 import org.apache.commons.io.FileUtils;
-import org.apache.crunch.impl.mem.OctoMemPipeline;
+import org.apache.crunch.impl.mem.MemPipeline;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,15 +15,15 @@ import static org.assertj.core.api.CrunchAssertions.assertThat;
  * Powered by o<+o
  */
 
-public class IpLocationIndicatorIntTest {
+public class IpLocationIndicatorIntTest extends BaseCrunchBofTest {
 
-    String in = "src/test/resources/access_log";
-    String out = "target/test/result";
-    String countriesFile = "src/test/resources/countries_ip";
 
-    @Before
-    public void setUp() throws Exception {
-        FileUtils.deleteDirectory(new File(out));
+    private final String countriesFile;
+
+    public IpLocationIndicatorIntTest(){
+        in = "src/test/resources/access_log";
+        out = "target/test/result";
+        countriesFile = "src/test/resources/countries_ip";
     }
 
     @Test
@@ -31,9 +32,9 @@ public class IpLocationIndicatorIntTest {
         IpLocationIndicator job = new IpLocationIndicator();
 
         // When
-        job.run(OctoMemPipeline.getInstance(), in, out, countriesFile);
+        job.run(MemPipeline.getInstance(), in, out, countriesFile);
 
         // Then
-        assertThat(out + "/out.txt").isEqualTo("src/test/resources/level3/expected.txt");
+        assertThat(out).isEqualTo("src/test/resources/level3/expected.txt");
     }
 }
