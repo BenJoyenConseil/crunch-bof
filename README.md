@@ -20,5 +20,7 @@ level3 : get country list by ip address location (join)
 
 level4 : process inverted index on the Declaration des Droits de l'Homme et du Citoyen
 
+level5 ; deserialize the inverted index into a collection of POJO using Avro format, and distributed search on that collection
+
 
 org.apache.crunch.impl.mem.OctoMemPipeline is a trick to have output with constant name.
