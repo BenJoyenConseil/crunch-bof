@@ -1,14 +1,17 @@
 # crunch-bof
 
-The goal : to learn Apache Crunch programming. 
+## description 
 
+The goal : to learn Apache Crunch programming. 
 How ? You have to implement the code to pass the tests.
 
-
-mvn clean install -DSkipTests
-
 src/test/resources/access_log is the main dataset :
-Apache log file described here : http://httpd.apache.org/docs/1.3/logs.html
+Apache log file described (here)[http://httpd.apache.org/docs/1.3/logs.html]
+
+## build
+
+    mvn clean install -DSkipTests
+
 
 level0 : read and write data (pipeline methods)
 
